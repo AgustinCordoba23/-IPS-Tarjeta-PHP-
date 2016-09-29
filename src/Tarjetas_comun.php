@@ -2,6 +2,8 @@
 
 //Cordoba
 
+namespace Tarjeta;
+
 interface Tarjeta {
   public function pagar(Transporte $transporte, $fecha_y_hora);
   public function recargar($monto);
@@ -75,60 +77,3 @@ class Tarjetas_comun implements Tarjeta{
 		}
 	}
 }
-
-class Medio_boleto extends Tarjetas_comun{	
-	public function __construct(){
-		$this->plata = 0;
-		$this->boleto_cole = 4;
-		$this->boleto_bici = 6;
-		$this->transbordo = (float)((int)($this->boleto_cole/3*100)/100);
-	}
-}
-
-abstract class Transporte{
-} 
-
-class Bici extends Transporte{
-	public $nombre;
-	public $tipo;
-
-	public function __construct($nom){
-		$this->tipo = "bici";
-		$this->nombre = $nom;
-	}
-}
-
-class Colectivo extends Transporte{
-	public $linea;
-	public $empresa;
-	public $tipo;
-
-	public function __construct($lin, $emp){
-		$this->linea = $lin;
-		$this->empresa = $emp;
-		$this->tipo = "colectivo";
-	}
-}
-
-$tarjeta = new Tarjetas_comun;
-$tarjeta->recargar(272);
-print "Saldo ";
-$tarjeta->saldo(); 
-
-$colectivo144Negro = new Colectivo("144 Negro", "Rosario Bus");
-$tarjeta->pagar($colectivo144Negro, "2016/06/30 22:50");
-print "Saldo ";
-$tarjeta->saldo(); 
-
-$colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
-$tarjeta->pagar($colectivo135, "2016/06/30 23:10");
-print "Saldo ";  
-$tarjeta->saldo(); 
-
-$bici = new Bici(1234);
-$tarjeta->pagar($bici, "2016/07/02 08:10");
-print "Saldo ";
-$tarjeta->saldo();
-
-$tarjeta->viajesRealizados();
-
