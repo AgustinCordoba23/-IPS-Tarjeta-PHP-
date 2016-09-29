@@ -25,7 +25,7 @@ class TarjetaTest extends TestCase {
   }
 
   public function testMedio_boleto(){
-    $tarjeta = new Medio_Boleto;
+    $tarjeta = new Medio_boleto;
     $tarjeta->recargar(272);
 
     $colectivo144Negro = new Colectivo("144 Negro", "Rosario Bus");    
@@ -43,7 +43,7 @@ class TarjetaTest extends TestCase {
 
   public function testBici(){
     $tarjeta = new Tarjetas_comun;
-    $medio = new Medio_Boleto;
+    $medio = new Medio_boleto;
     $tarjeta->recargar(272);
     $medio->recargar(272);
     $bici = new Bici(1234);
