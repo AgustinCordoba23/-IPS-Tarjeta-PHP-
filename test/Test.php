@@ -52,7 +52,7 @@ class TarjetaTest extends TestCase {
     $medio->pagar($bici, "2016/08/02 09:10");
 
     $this->assertEquals($tarjeta->saldo(), 308, "Me voy a dar una vuelta en bici papa");
-    $this->assertEquals($tarjeta->saldo(), 314, "Me voy a dar una vuelta en bici con medio");
+    $this->assertEquals($medio->saldo(), 314, "Me voy a dar una vuelta en bici con medio");
   }
 
 }
