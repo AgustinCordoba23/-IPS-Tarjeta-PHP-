@@ -28,7 +28,7 @@ class Tarjetas_comun implements Tarjeta{
 	}
 
 	public function saldo(){
-		print $this->plata . "\n";
+		return $this->plata;
 	}
 
 	public function viajesRealizados(){
