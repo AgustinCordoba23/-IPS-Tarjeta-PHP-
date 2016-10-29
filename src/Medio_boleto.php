@@ -3,7 +3,8 @@
 namespace Tarjeta;
 
 class Medio_boleto extends Tarjetas_comun{	
-	public function __construct(){
+	public function __construct($id){
+		$this->id = $id;
 		$this->plata = 0;
 		$this->boleto_cole = 4;
 		$this->boleto_bici = 6;
