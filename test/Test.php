@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 class TarjetaTest extends TestCase {
 
   public function testTarjetas_comun() {
-    $tarjeta = new Tarjetas_comun;
+    $tarjeta = new Tarjetas_comun(1);
     $tarjeta->recargar(272);
     $this->assertEquals($tarjeta->saldo(), 320, "Cargo 270 y me regalan a 320");
     
@@ -25,7 +25,7 @@ class TarjetaTest extends TestCase {
   }
 
   public function testMedio_boleto(){
-    $tarjeta = new Medio_boleto;
+    $tarjeta = new Medio_boleto(1);
     $tarjeta->recargar(272);
 
     $colectivo144Negro = new Colectivo("144 Negro", "Rosario Bus");    
@@ -42,8 +42,8 @@ class TarjetaTest extends TestCase {
   }
 
   public function testBici(){
-    $tarjeta = new Tarjetas_comun;
-    $medio = new Medio_boleto;
+    $tarjeta = new Tarjetas_comun(1);
+    $medio = new Medio_boleto(2);
     $tarjeta->recargar(272);
     $medio->recargar(272);
     $bici = new Bici(1234);
@@ -53,6 +53,16 @@ class TarjetaTest extends TestCase {
 
     $this->assertEquals($tarjeta->saldo(), 308, "Me voy a dar una vuelta en bici papa");
     $this->assertEquals($medio->saldo(), 314, "Me voy a dar una vuelta en bici con medio");
+  }
+
+  public function Boleto(){
+    $boleto = new Boleto("2016/07/02 08:10", 0, 8, 304, "135 Azul", 2311);
+    $this->assertEquals($boleto->getcosto(), 8, "Costo de nomal");
+    $this->assertEquals($boleto->getfecha(), "2016/07/02 08:10", "La fechita");
+    $this->assertEquals($boleto->getlinea(), "135 Azul", "El trolebus que te tomaste");
+    $this->assertEquals($boleto->getid(), 2311, "23");
+    $this->assertEquals($boleto->getsaldo(), 304, "Cada vez mas caro el bondi");
+    $this->assertEquals($boleto->gettipo(), 0, "El 0 es un nro muy normal");
   }
 
 }
