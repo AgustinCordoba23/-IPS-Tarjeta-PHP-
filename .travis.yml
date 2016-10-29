@@ -1,13 +1,13 @@
 language: php
 php:
-  - 7.0
+- '7.0'
+before_script:
+- wget http://getcomposer.org/composer.phar
+- php composer.phar install
 
-install:
-  - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install --dev --no-interaction
 script:
-  - mkdir -p build/logs
-  - php vendor/bin/phpunit -c phpunit.xml
+- mkdir -p build/logs
+- php vendor/bin/phpunit --coverage-clover=build/logs/clover.xml tests
 
-after_success:
-  - travis_retry php vendor/bin/coveralls
+after_script:
+- php vendor/bin/coveralls -v
