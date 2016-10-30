@@ -27,6 +27,7 @@ class TarjetaTest extends TestCase {
     $this->assertEquals($plus->saldo(), 0, "Inicializa en 0");
     $colectivo145Negro = new Colectivo("145 Negro", "Rosario Bus");    
     $plus->pagar($colectivo145Negro, "2016/06/30 20:50");
+    $this->assertEquals($plus->saldo(), -8, "Negativo");
     $plus->recargar(272);
     $this->assertEquals($plus->saldo(), 304, "Se descuenta el plus");
 
