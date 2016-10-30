@@ -35,7 +35,7 @@ class Tarjetas_comun implements Tarjeta{
 	}
 
 	public function viajesRealizados(){
-		print "\nViajes totales en transporte publico: " . $this->viajes . "\n";
+		return $this->viajes;
 	}
 
 	public function recargar($monto){
