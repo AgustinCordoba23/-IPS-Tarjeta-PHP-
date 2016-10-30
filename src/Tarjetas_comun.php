@@ -15,6 +15,7 @@ class Tarjetas_comun implements Tarjeta{
 	private $plata;
 	private $hora_anterior;
 	private $linea_anterior;
+	private $viajes;
 	protected $boleto_cole;
 	protected $boleto_bici;
 	protected $transbordo;
