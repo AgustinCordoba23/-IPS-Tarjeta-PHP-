@@ -55,7 +55,7 @@ class TarjetaTest extends TestCase {
     $this->assertEquals($medio->saldo(), 314, "Me voy a dar una vuelta en bici con medio");
   }
 
-  public function Boleto(){
+  public function testBoleto(){
     $boleto = new Boleto("2016/07/02 08:10", 0, 8, 304, "135 Azul", 2311);
     $this->assertEquals($boleto->getcosto(), 8, "Costo de nomal");
     $this->assertEquals($boleto->getfecha(), "2016/07/02 08:10", "La fechita");
