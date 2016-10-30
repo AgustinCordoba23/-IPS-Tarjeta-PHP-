@@ -22,6 +22,20 @@ class TarjetaTest extends TestCase {
     $colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
     $tarjeta->pagar($colectivo135, "2016/06/30 23:58");  
     $this->assertEquals($tarjeta->saldo(), 301.34, "Comun casi a medianoche ;)" );
+
+    $plus = new Tarjetas_comun(2);
+    $this->assertEquals($plus->saldo(), 0, "Inicializa en 0");
+    $colectivo145Negro = new Colectivo("145 Negro", "Rosario Bus");    
+    $plus->pagar($colectivo145Negro, "2016/06/30 20:50");
+    $plus->recargar(272);
+    $this->assertEquals($plus->saldo(), 304, "Se descuenta el plus");
+
+    $sin = new Tarjetas_comun(3);
+    $colectivo167Negro = new Colectivo("167 Negro", "Rosario Bus");    
+    $sin->pagar($colectivo167Negro, "2016/06/30 20:50");
+    $sin->pagar($colectivo167Negro, "2016/07/30 20:50");
+    $this->assertEquals($sin->pagar($colectivo167Negro, "2016/08/30 20:50"), "No tenes saldo", "Ah listo te clavo el visto y nv");
+
   }
 
   public function testMedio_boleto(){
