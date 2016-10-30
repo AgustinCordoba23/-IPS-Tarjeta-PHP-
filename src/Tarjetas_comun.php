@@ -31,6 +31,10 @@ class Tarjetas_comun implements Tarjeta{
 		return $this->plata;
 	}
 
+	public function viajesRealizados(){
+		print "\nViajes totales en transporte publico: " . $this->viajes . "\n";
+	}
+
 	public function recargar($monto){
 		if ($monto < 272) $this->plata = $this->plata + $monto;
 		else if ($monto < 500) $this->plata = $this->plata + $monto + 48;
@@ -62,12 +66,14 @@ class Tarjetas_comun implements Tarjeta{
 			
 			$this->linea_anterior = $transporte->linea;
 			$this->hora_anterior = $fecha_y_hora;
+			$this->viajes = $this->viajes + 1;
 		}
 		else{
 			if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior) > 86400){
 				$this->plata = $this->plata - $this->boleto_bici;
 				//print "\nAbordando " . $transporte->tipo . " " . $transporte->nombre . "\n";
-			}		
+			}
+			$this->viajes = $this->viajes + 1;		
 		}
 	}
 }
