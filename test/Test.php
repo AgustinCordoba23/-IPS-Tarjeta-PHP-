@@ -62,7 +62,7 @@ class TarjetaTest extends TestCase {
     $this->assertEquals($boleto->getlinea(), "135 Azul", "El trolebus que te tomaste");
     $this->assertEquals($boleto->getid(), 2311, "23");
     $this->assertEquals($boleto->getsaldo(), 304, "Cada vez mas caro el bondi");
-    $this->assertEquals($boleto->gettipo(), 0, "El 0 es un nro muy normal");
+    $this->assertEquals($boleto->gettipo(), "Normal", "El 0 es un nro muy normal");
   }
 
 }
