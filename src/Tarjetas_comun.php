@@ -65,7 +65,7 @@ class Tarjetas_comun implements Tarjeta{
 					if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior) <= 5400){
 
 						if (strftime("%w", strtotime($fecha_y_hora)) < 5 && strftime("%H", strtotime($fecha_y_hora)) <=22 && strftime("%H", strtotime($fecha_y_hora))>=6){
-							if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior)) <= 3600){
+							if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior) <= 3600){
 								$this->plata = $this->plata - $this->transbordo;
 							}
 							else{
@@ -74,7 +74,7 @@ class Tarjetas_comun implements Tarjeta{
 						}
 
 						if (strftime("%w", strtotime($fecha_y_hora)) == 5 && strftime("%H", strtotime($fecha_y_hora)) <=14 && strftime("%H", strtotime($fecha_y_hora))>=6){
-							if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior)) <= 3600){
+							if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior) <= 3600){
 								$this->plata = $this->plata - $this->transbordo;
 							}
 							else{
