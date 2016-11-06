@@ -16,7 +16,7 @@ class TarjetaTest extends TestCase {
     $colectivo136 = new Colectivo("136 Azul", "Rosario Bus");
     $trans->pagar($colectivo136, "2016/06/25 21:00");
     $colectivo137 = new Colectivo("137 Azul", "Rosario Bus");
-    $trans->pagar($colectivo135, "2016/06/25 22:25");
+    $trans->pagar($colectivo137, "2016/06/25 22:25");
     $this->assertEquals($trans->saldo(), 309.34, "Me levanto un traba dominguero");
 
     $tarjeta = new Tarjetas_comun(1);
