@@ -60,22 +60,38 @@ class Tarjetas_comun implements Tarjeta{
 			if ($transporte->linea != $this->linea_anterior){
 				if ($this->viajes == 0){
 					$this->plata = $this->plata - $this->boleto_cole;
-					//print "\nAbordando " . $transporte->tipo . " " . $transporte->linea . "\n";
 				}
 				else{
-					if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior) <= 3600){
+					if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior) <= 5400){
+
+						if (strftime("%w", strtotime($fecha_y_hora)) < 5 && strftime("%H", strtotime($fecha_y_hora)) <=22 && strftime("%H", strtotime($fecha_y_hora))>=6){
+							if strtotime($fecha_y_hora) - strtotime($this->hora_anterior) <= 3600){
+								$this->plata = $this->plata - $this->transbordo;
+							}
+							else{
+								$this->plata = $this->plata - $this->boleto_cole;
+							}
+						}
+
+						if (strftime("%w", strtotime($fecha_y_hora)) == 5 && strftime("%H", strtotime($fecha_y_hora)) <=14 && strftime("%H", strtotime($fecha_y_hora))>=6){
+							if strtotime($fecha_y_hora) - strtotime($this->hora_anterior) <= 3600){
+								$this->plata = $this->plata - $this->transbordo;
+							}
+							else{
+								$this->plata = $this->plata - $this->boleto_cole;
+							}
+						}
+
 						$this->plata = $this->plata - $this->transbordo;
-						//print "\nTransbordo a " . $transporte->tipo . " " . $transporte->linea . "\n";
+
 					}
 					else{
 						$this->plata = $this->plata - $this->boleto_cole;
-						//print "\nAbordando " . $transporte->tipo . " " . $transporte->linea . "\n";
 					}
 				}
 			}
 			else{
 				$this->plata = $this->plata - $this->boleto_cole;
-				//print "\nAbordando nuevamente " . $transporte->tipo . " " . $transporte->linea . "\n";
 			}
 			
 			$this->linea_anterior = $transporte->linea;
@@ -86,7 +102,6 @@ class Tarjetas_comun implements Tarjeta{
 		else{
 			if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior) > 86400){
 				$this->plata = $this->plata - $this->boleto_bici;
-				//print "\nAbordando " . $transporte->tipo . " " . $transporte->nombre . "\n";
 			}
 			$this->viajes = $this->viajes + 1;		
 		}

@@ -16,11 +16,11 @@ class TarjetaTest extends TestCase {
     $this->assertEquals($tarjeta->saldo(), 320, "Cargo 270 y me regalan a 320");
     
     $colectivo144Negro = new Colectivo("144 Negro", "Rosario Bus");    
-    $tarjeta->pagar($colectivo144Negro, "2016/06/30 20:50");
+    $tarjeta->pagar($colectivo144Negro, "2016/06/30 10:50");
     $this->assertEquals($tarjeta->saldo(), 312, "Saca 8pe de la carga");
 
     $colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
-    $tarjeta->pagar($colectivo135, "2016/06/30 21:10");
+    $tarjeta->pagar($colectivo135, "2016/06/30 11:10");
     $this->assertEquals($tarjeta->saldo(), 309.34, "Transbordo de bondi ");
 
     $colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
@@ -28,6 +28,15 @@ class TarjetaTest extends TestCase {
     $this->assertEquals($tarjeta->saldo(), 301.34, "Comun casi a medianoche ;)" );
 
     $this->assertEquals($tarjeta->viajesRealizados(), 3, "Vivo en bondi");
+
+    $trans = new Tarjetas_comun(78);
+    $trans->recargar(272);
+    $colectivo136 = new Colectivo("136 Azul", "Rosario Bus");
+    $trans->pagar($colectivo136, "2016/06/25 21:00");
+    $colectivo137 = new Colectivo("137 Azul", "Rosario Bus");
+    $trans->pagar($colectivo135, "2016/06/25 22:25");
+    $this->assertEquals($trans->saldo(), 309.34, "Me levanto un traba dominguero");
+
 
     $plus = new Tarjetas_comun(2);
     $this->assertEquals($plus->saldo(), 0, "Inicializa en 0");

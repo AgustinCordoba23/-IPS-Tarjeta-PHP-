@@ -7,7 +7,7 @@ class Boleto{
 	protected $fecha;
 	protected $saldo;
 	protected $tipo;
-	protected $tipos = array(0 => "Normal", 1 => "Medio", 2 => "Plus");
+	protected $tipos = array(0 => "Normal", 1 => "Medio", 2 => "Plus", 3=>"Libre");
 	protected $linea;
 	protected $costo;
 	protected $id;
