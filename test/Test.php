@@ -57,7 +57,7 @@ class TarjetaTest extends TestCase {
     $cien->pagar($colectivo144Negro, "2016/06/30 10:00");
     $colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
     $cien->pagar($colectivo135, "2016/06/30 11:15");
-    $this->assertEquals($cien->saldo(), 304, "Transbordo de bondi ");
+    $this->assertEquals($cien->saldo(), 304, "No Transbordo de bondi");
 
     $cien1 = new Tarjetas_comun(101);
     $cien1->recargar(272);
@@ -73,7 +73,7 @@ class TarjetaTest extends TestCase {
     $cien2->pagar($colectivo144Negro, "2016/06/24 10:00");
     $colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
     $cien2->pagar($colectivo135, "2016/06/24 11:15");
-    $this->assertEquals($cien2->saldo(), 304, "Transbordo de bondi ");
+    $this->assertEquals($cien2->saldo(), 304, "No Transbordo de bondi ");
 
   }
 
