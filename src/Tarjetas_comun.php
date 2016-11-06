@@ -17,6 +17,7 @@ class Tarjetas_comun implements Tarjeta{
 	private $linea_anterior;
 	private $viajes;
 	private $plus;
+	private $t;
 	protected $boleto_cole;
 	protected $boleto_bici;
 	protected $transbordo;
@@ -27,6 +28,7 @@ class Tarjetas_comun implements Tarjeta{
 		$this->plata = 0;
 		$this->boleto_cole = 8;
 		$this->boleto_bici = 12;
+		$this->t = 0;
 		$this->transbordo = (float)((int)($this->boleto_cole/3*100)/100);
 	}
 
@@ -65,6 +67,7 @@ class Tarjetas_comun implements Tarjeta{
 					if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior) <= 5400){
 
 						if (strftime("%w", strtotime($fecha_y_hora)) < 5 && strftime("%H", strtotime($fecha_y_hora)) <=22 && strftime("%H", strtotime($fecha_y_hora))>=6){
+							$this->t=1;
 							if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior) <= 3600){
 								$this->plata = $this->plata - $this->transbordo;
 							}
@@ -74,6 +77,7 @@ class Tarjetas_comun implements Tarjeta{
 						}
 
 						if (strftime("%w", strtotime($fecha_y_hora)) == 5 && strftime("%H", strtotime($fecha_y_hora)) <=14 && strftime("%H", strtotime($fecha_y_hora))>=6){
+							$this->t=1;
 							if (strtotime($fecha_y_hora) - strtotime($this->hora_anterior) <= 3600){
 								$this->plata = $this->plata - $this->transbordo;
 							}
@@ -82,8 +86,9 @@ class Tarjetas_comun implements Tarjeta{
 							}
 						}
 
-						$this->plata = $this->plata - $this->transbordo;
-
+						if ($this->t == 0){
+							$this->plata = $this->plata - $this->transbordo;
+						}
 					}
 					else{
 						$this->plata = $this->plata - $this->boleto_cole;
@@ -97,6 +102,7 @@ class Tarjetas_comun implements Tarjeta{
 			$this->linea_anterior = $transporte->linea;
 			$this->hora_anterior = $fecha_y_hora;
 			$this->viajes = $this->viajes + 1;
+			$this->t = 0;
 		}
 	}
 		else{
