@@ -10,7 +10,7 @@ class TarjetaTest extends TestCase {
     $hola = new Tarjetas_comun(5);
     $hola->recargar(500);
     $this->assertEquals($hola->saldo(), 640, "La re guita papa");
-    
+
     $tarjeta = new Tarjetas_comun(1);
     $tarjeta->recargar(272);
     $this->assertEquals($tarjeta->saldo(), 320, "Cargo 270 y me regalan a 320");
@@ -26,7 +26,7 @@ class TarjetaTest extends TestCase {
     $colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
     $tarjeta->pagar($colectivo135, "2016/06/30 23:58");  
     $this->assertEquals($tarjeta->saldo(), 301.34, "Comun casi a medianoche ;)" );
-    
+
     $this->assertEquals($tarjeta->viajesRealizados(), 3, "Vivo en bondi");
 
     $plus = new Tarjetas_comun(2);
@@ -60,6 +60,15 @@ class TarjetaTest extends TestCase {
     $colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
     $tarjeta->pagar($colectivo135, "2016/06/30 23:58");  
     $this->assertEquals($tarjeta->saldo(), 310.67, "Medio casi a medianoche ;)" );
+  }
+
+  public function testPase_libre(){
+    $tarjeta = new Pase_libre(1);
+    $tarjeta->recargar(272);
+
+    $colectivo144Negro = new Colectivo("144 Negro", "Rosario Bus");    
+    $tarjeta->pagar($colectivo144Negro, "2016/06/30 20:50");
+    $this->assertEquals($tarjeta->saldo(), 320, "Pasa sin pagar");
   }
 
   public function testBici(){
