@@ -51,6 +51,30 @@ class TarjetaTest extends TestCase {
     $sin->pagar($colectivo167Negro, "2016/07/30 20:50");
     $this->assertEquals($sin->pagar($colectivo167Negro, "2016/08/30 20:50"), "No tenes saldo", "Ah listo te clavo el visto y nv");
 
+    $cien = new Tarjetas_comun(100);
+    $cien->recargar(272);
+    $colectivo144Negro = new Colectivo("144 Negro", "Rosario Bus");    
+    $cien->pagar($colectivo144Negro, "2016/06/30 10:00");
+    $colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
+    $cien->pagar($colectivo135, "2016/06/30 11:15");
+    $this->assertEquals($cien->saldo(), 304, "Transbordo de bondi ");
+
+    $cien1 = new Tarjetas_comun(101);
+    $cien1->recargar(272);
+    $colectivo144Negro = new Colectivo("144 Negro", "Rosario Bus");    
+    $cien1->pagar($colectivo144Negro, "2016/06/24 10:00");
+    $colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
+    $cien1->pagar($colectivo135, "2016/06/24 10:15");
+    $this->assertEquals($cien1->saldo(), 309.34, "Transbordo de bondi ");
+
+    $cien2 = new Tarjetas_comun(102);
+    $cien2->recargar(272);
+    $colectivo144Negro = new Colectivo("144 Negro", "Rosario Bus");    
+    $cien2->pagar($colectivo144Negro, "2016/06/24 10:00");
+    $colectivo135 = new Colectivo("135 Azul", "Rosario Bus");
+    $cien2->pagar($colectivo135, "2016/06/24 11:15");
+    $this->assertEquals($cien2->saldo(), 304, "Transbordo de bondi ");
+
   }
 
   public function testMedio_boleto(){
